@@ -15,8 +15,11 @@ def predict():
     feature=head+' '+desc
     model=jb.load('modelComplement')
     prediksi=model.predict([feature])[0]
-    besar1=prediksi[0]
-    kategori=besar1+prediksi[1:].lower()
+    prediksi_l=prediksi.lower().split(' ')
+    prediksi_u=[]
+    for i in prediksi_l:
+        prediksi_u.append(i[0].upper()+i[1:])
+    kategori=' '.join(prediksi_u)
     probabilitas=model.predict_proba([feature])
     predictData=[kategori,probabilitas]
     return render_template('predict.htm',prediction=predictData)

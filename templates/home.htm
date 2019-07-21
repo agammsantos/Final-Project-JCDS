@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='home.css')}}">
+    <title>News Category Predictor</title>
+</head>
+<body><br><br>
+<center>
+    <h1><b>News Category Predictor Based on Its <i>Headline</i> and <i>Short Description</i></b></h1>
+    <h3>"Generalize articles you can't comprehend, at least"</h3><br>
+    <form action="http://localhost:5000/prediksi" method="post">
+        <p>
+        <h2>Headline</h2>
+        <textarea rows = "2" cols = "110" placeholder = "News Headline" name = "head" required></textarea>
+        </p>
+        <p>
+        <h2>Short Description</h2>
+        <textarea rows = "6" cols = "80" name = "desc" placeholder="News Description" required></textarea>
+        </p><br>
+        <p>
+        <input type="submit" value="Predict Category">
+        </p>
+    </form>
+</center>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='predict.css')}}">
+    <title>Prediction</title>
+</head>
+<body>
+    <center><br><br>
+        <h1>Turns out the category is {{prediction[0]}}, right?</h1>
+        <h2>
+            Pretty sure you know it already, in case you're not then you can have this probability matrice for now:
+            <br>{{prediction[1][0]}}
+        </h2><br><br>
+        <form action="http://localhost:5000/">
+            <p> 
+            <input type="submit" value="Predict Again">
+            </p>
+        </form>
+    </center>
+</body>
+</html>

@@ -6,6 +6,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.naive_bayes import ComplementNB
+from sklearn.linear_model import SGDClassifier
 from sklearn.pipeline import Pipeline
 from sklearn.metrics import classification_report, confusion_matrix
 import joblib as jb
@@ -76,23 +77,33 @@ multinomialPipeline = Pipeline([
     ('cv',CountVectorizer(stop_words='english')),
     ('classifier',MultinomialNB())
 ])
+multinomialPipeline.fit(xtr,ytr)
+multinomialPrediksi = multinomialPipeline.predict(xts)
+
 complementPipeline = Pipeline([
     ('cv',CountVectorizer(stop_words='english')),
     ('classifier',ComplementNB())
 ])
-
-multinomialPipeline.fit(xtr,ytr)
 complementPipeline.fit(xtr,ytr)
-
-multinomialPrediksi = multinomialPipeline.predict(xts)
 complementPrediksi = complementPipeline.predict(xts)
+
+sgdcPipeline = Pipeline([
+    ('cv',CountVectorizer(stop_words='english')),
+    ('classifier',SGDClassifier(loss='hinge', penalty='l2',alpha=1e-3, random_state=42, max_iter=5, tol=1e-3))
+])
+sgdcPipeline.fit(xtr,ytr)
+sgdcPrediksi = sgdcPipeline.predict(xts)
 
 print('Dengan metode MultinomialNB, diperoleh: ')
 print(classification_report(yts,multinomialPrediksi))
 print(confusion_matrix(yts,multinomialPrediksi))
 print('\n')
-print('Dengan metode menggunakComplementNB, diperoleh: ')
+print('Dengan metode ComplementNB, diperoleh: ')
 print(classification_report(yts,complementPrediksi))
 print(confusion_matrix(yts,complementPrediksi))
+print('\n')
+print('Dengan metode Stochastic Gradient Descent, diperoleh: ')
+print(classification_report(yts,sgdcPrediksi))
+print(confusion_matrix(yts,sgdcPrediksi))
 
 jb.dump(complementPipeline, 'modelComplement')

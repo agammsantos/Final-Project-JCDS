@@ -39,6 +39,7 @@ data['features']=data['features'].apply(lambda x: x.lower())
 data['hwlen'] = data['headline'].apply(lambda x: x.split(' ')).apply(len)
 data['dwlen'] = data['short_description'].apply(lambda x: x.split(' ')).apply(len)
 data['fwlen'] = data['features'].apply(lambda x: x.split(' ')).apply(len)
+data.to_csv(r'news.csv')
 # print(data['features'].head())
 # print(data['fwlen'].max())
 
@@ -85,5 +86,6 @@ desc = 'Tiger Woods missed the cut in the Open Championship at Royal Portrush'
 feat = head+' '+desc
 print(complementPipeline.predict([feat]))
 print(complementPipeline.predict_proba([feat]))
+print(complementPipeline.score(xtr,ytr))
 
 jb.dump(complementPipeline, 'modelComplement')

@@ -48,6 +48,7 @@ for group in grouped:
     plt.hist(group[1]['hwlen'],bins='auto')
     i+=1    
 plt.subplots_adjust(hspace=.6,wspace=.4)
+plt.savefig('./histogramh.png',format='png')
 
 plt.figure('Histogram 2',figsize=(25,25))
 plt.suptitle('Histogram Jumlah Kata Deskripsi Per Kategori',size=25)
@@ -58,6 +59,7 @@ for group in grouped:
     plt.hist(group[1]['dwlen'],bins='auto')
     i+=1    
 plt.subplots_adjust(hspace=.6,wspace=.4)
+plt.savefig('./histogramd.png',format='png')
 
 plt.figure('Histogram 3',figsize=(25,25))
 plt.suptitle('Histogram Jumlah Kata Features Per Kategori',size=25)
@@ -68,5 +70,6 @@ for group in grouped:
     plt.hist(group[1]['fwlen'],bins='auto')
     i+=1    
 plt.subplots_adjust(hspace=.6,wspace=.4)
+plt.savefig('./histogramf.png',format='png')
 
 plt.show()
